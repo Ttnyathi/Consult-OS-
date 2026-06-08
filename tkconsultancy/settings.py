@@ -106,15 +106,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 #For Custom USER
 
 #AUTH_USER_MODEL = "tkconsultancy.CustomUser"
-
-# Registering Custom Backend "EmailBackEnd"
-AUTHENTICATION_BACKENDS = ['tkconsultancy.EmailBackEnd.EmailBackEnd']
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
