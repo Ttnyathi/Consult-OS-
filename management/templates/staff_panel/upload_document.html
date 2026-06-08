@@ -1,0 +1,7 @@
+{% extends "staff_panel/base.html" %}
+{% block title %}Upload Document{% endblock %}
+{% block header %}Upload Document{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Upload work</h1><p>{{ project.title }}. Upload drafts, final work, plagiarism reports, or supporting files.</p></div><a class="secondary" href="{% url 'staff:staff_project_detail' project.id %}">Back</a></section>
+  <form class="form-card form-grid form-wide" method="post" enctype="multipart/form-data">{% csrf_token %}{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Upload</button><a class="secondary" href="{% url 'staff:staff_project_detail' project.id %}">Cancel</a></div></form>
+{% endblock %}

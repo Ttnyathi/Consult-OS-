@@ -1,0 +1,16 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Projects{% endblock %}
+{% block header %}Projects{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Projects</h1><p>Search, filter, assign, track progress, documents, and payments.</p></div><a class="primary" href="{% url 'management:create_project' %}">Create project</a></section>
+  <form class="toolbar" method="get">
+    <input name="q" value="{{ query }}" placeholder="Search title, client, institution">
+    <select name="status"><option value="">Any status</option>{% for value,label in status_choices %}<option value="{{ value }}" {% if status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <select name="payment_status"><option value="">Any payment</option>{% for value,label in payment_status_choices %}<option value="{{ value }}" {% if payment_status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select>
+    <select name="staff"><option value="">Any staff</option>{% for member in staff %}<option value="{{ member.id }}" {% if staff_id == member.id|stringformat:"s" %}selected{% endif %}>{{ member.full_name }}</option>{% endfor %}</select>
+    <select name="service"><option value="">Any service</option>{% for item in services %}<option value="{{ item.id }}" {% if service_id == item.id|stringformat:"s" %}selected{% endif %}>{{ item.name }}</option>{% endfor %}</select>
+    <button class="secondary" type="submit">Apply</button>
+  </form>
+  <section class="table-card">{% if projects %}<table><thead><tr><th>Project</th><th>Client</th><th>Service</th><th>Staff</th><th>Status</th><th>Payment</th><th>Deadline</th></tr></thead><tbody>{% for project in projects %}<tr><td><a class="link" href="{% url 'management:project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.client.full_name }}</td><td>{{ project.service|default:"-" }}</td><td>{{ project.assigned_staff|default:"Unassigned" }}</td><td><span class="badge">{{ project.status }}</span></td><td>{{ project.payment_status }}</td><td>{{ project.deadline }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No projects found.</div>{% endif %}</section>
+  {% include "admin_panel/pagination.html" with page_obj=projects %}
+{% endblock %}

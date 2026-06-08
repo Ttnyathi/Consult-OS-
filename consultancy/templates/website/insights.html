@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Insights | TK Research</title>
+
+  <style>
+
+    /* =========================
+       GOOGLE FONTS
+    ========================= */
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    /* =========================
+       RESET
+    ========================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      color: #07133f;
+      background: #fbfcff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+    .nav {
+      height: 66px;
+
+      background: rgba(255,255,255,.95);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7.5%;
+
+      box-shadow: 0 10px 30px rgba(19,31,82,.08);
+
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mark {
+      font-size: 30px;
+      font-weight: 700;
+      color: #4f42dd;
+      letter-spacing: -2px;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 700;
+    }
+
+    .links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .links .active {
+      color: #4f42dd;
+    }
+
+    .btn {
+      background: #4739d2;
+      color: #fff !important;
+
+      padding: 14px 30px;
+      border-radius: 8px;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================= */
+    .hero {
+      padding: 76px 7.5%;
+
+      background:
+        radial-gradient(circle at 78% 18%, #dfe8ff 0%, transparent 44%),
+        linear-gradient(110deg, #fff, #f6f8ff);
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+
+      padding: 8px 14px;
+      border-radius: 999px;
+
+      background: #f0efff;
+      color: #4f42dd;
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background: #5548db;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      line-height: 1.03;
+
+      margin: 24px 0 18px;
+
+      max-width: 780px;
+    }
+
+    .grad {
+      background: linear-gradient(90deg, #6e45e2, #1474d4);
+
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      font-size: 17px;
+      line-height: 1.75;
+
+      color: #596079;
+
+      max-width: 720px;
+    }
+
+    /* =========================
+       MAIN WRAPPER
+    ========================= */
+    .wrap {
+      padding: 54px 7.5%;
+    }
+
+    /* =========================
+       ARTICLES GRID
+    ========================= */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .article {
+      background: #fff;
+
+      border: 1px solid #e0e5f2;
+      border-radius: 14px;
+
+      padding: 28px;
+
+      box-shadow: 0 18px 45px rgba(42,50,96,.08);
+
+      min-height: 260px;
+    }
+
+    .tag {
+      display: inline-flex;
+
+      background: #f0efff;
+      color: #4f42dd;
+
+      border-radius: 999px;
+
+      padding: 7px 11px;
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .article h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 25px;
+      line-height: 1.12;
+
+      margin: 20px 0 12px;
+    }
+
+    .article p {
+      color: #596079;
+
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .article a {
+      color: #4f42dd;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    /* =========================
+       INFO PANEL
+    ========================= */
+    .panel {
+      margin-top: 44px;
+
+      background: linear-gradient(135deg, #f3f0ff, #eaf4ff);
+
+      border-radius: 18px;
+
+      padding: 34px;
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .panel div {
+      background: rgba(255,255,255,.72);
+
+      border: 1px solid #dfe5f4;
+      border-radius: 14px;
+
+      padding: 24px;
+    }
+
+    .panel h3 {
+      margin: 0 0 10px;
+    }
+
+    .panel p {
+      margin: 0;
+
+      color: #596079;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width: 900px) {
+
+      .grid,
+      .panel {
+        grid-template-columns: 1fr;
+      }
+
+      .links {
+        display: none;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+  <nav class="nav">
+
+    <a class="brand" href="/">
+      <span class="mark">TK</span>
+      <span class="name">TK Research</span>
+    </a>
+
+    <div class="links">
+
+      <a href="/work/">Services</a>
+
+      <a href="/people/">People</a>
+
+      <a class="active" href="/insights/">
+        Insights
+      </a>
+
+      <a href="/careers/">Careers</a>
+
+      <a href="/workflow/">About</a>
+
+      <a href="/panel/login/">Staff Login</a>
+
+      <a class="btn" href="/contact/">
+        Contact Us
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+  <section class="hero">
+
+    <span class="pill">
+      <span class="dot"></span>
+      Insights
+    </span>
+
+    <h1>
+      Practical thinking for
+      <span class="grad">
+        research, reporting, and better decisions.
+      </span>
+    </h1>
+
+    <p class="lead">
+      Short, useful guidance for students,
+      organisations, founders, and programme teams
+      who need to turn evidence into action.
+    </p>
+
+  </section>
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+  <main class="wrap">
+
+    <!-- Articles Grid -->
+    <section class="grid">
+
+      <!-- Article 1 -->
+      <article class="article">
+
+        <span class="tag">Research</span>
+
+        <h2>
+          How to make a dissertation proposal defensible
+        </h2>
+
+        <p>
+          A strong proposal aligns the research problem,
+          literature gap, methodology, data plan,
+          and feasibility constraints.
+        </p>
+
+        <a href="/contact/">
+          Discuss this →
+        </a>
+
+      </article>
+
+      <!-- Article 2 -->
+      <article class="article">
+
+        <span class="tag">Evaluation</span>
+
+        <h2>
+          What funders want from evaluation reports
+        </h2>
+
+        <p>
+          A useful evaluation report connects indicators
+          to outcomes and turns field evidence
+          into decisions.
+        </p>
+
+        <a href="/contact/">
+          Discuss this →
+        </a>
+
+      </article>
+
+      <!-- Article 3 -->
+      <article class="article">
+
+        <span class="tag">Analytics</span>
+
+        <h2>
+          Why dashboards fail without narrative
+        </h2>
+
+        <p>
+          The strongest analytics packs show
+          what changed, why it matters,
+          and what to do next.
+        </p>
+
+        <a href="/contact/">
+          Discuss this →
+        </a>
+
+      </article>
+
+      <!-- Article 4 -->
+      <article class="article">
+
+        <span class="tag">Writing</span>
+
+        <h2>
+          The advisory value of clean writing
+        </h2>
+
+        <p>
+          Clear structure is how research becomes
+          persuasive to supervisors, boards,
+          funders, and partners.
+        </p>
+
+        <a href="/contact/">
+          Discuss this →
+        </a>
+
+      </article>
+
+      <!-- Article 5 -->
+      <article class="article">
+
+        <span class="tag">Advisory</span>
+
+        <h2>
+          Turning a messy brief into a usable scope
+        </h2>
+
+        <p>
+          Good scoping defines the audience,
+          decision, evidence standard, format,
+          review cadence, and constraints.
+        </p>
+
+        <a href="/workflow/">
+          See approach →
+        </a>
+
+      </article>
+
+      <!-- Article 6 -->
+      <article class="article">
+
+        <span class="tag">Methods</span>
+
+        <h2>
+          Choosing methods that fit the question
+        </h2>
+
+        <p>
+          The best methodology is the one that
+          answers the question credibly
+          within real constraints.
+        </p>
+
+        <a href="/work/">
+          View services →
+        </a>
+
+      </article>
+
+    </section>
+
+    <!-- Info Panel -->
+    <section class="panel">
+
+      <div>
+
+        <h3>For students</h3>
+
+        <p>
+          Proposal logic, chapter structure,
+          literature gaps, methodology defence,
+          and final submission polish.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>For organisations</h3>
+
+        <p>
+          Evidence frameworks, reporting systems,
+          evaluation narratives, and stakeholder-ready
+          decision material.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>For founders</h3>
+
+        <p>
+          Market research, customer insight,
+          competitor synthesis, pricing evidence,
+          and executive recommendations.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,9 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}{{ staff.full_name }}{% endblock %}
+{% block header %}Staff detail{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ staff.full_name }}</h1><p>{{ staff.role }} · {{ staff.phone|default:"No phone" }}</p></div><div class="card-actions"><a class="secondary" href="{% url 'management:edit_staff' staff.id %}">Edit</a><a class="secondary" href="{% url 'management:reset_staff_password' staff.id %}">Reset password</a><a class="secondary" href="{% url 'management:toggle_staff' staff.id %}">{{ staff.is_active|yesno:"Deactivate,Activate" }}</a></div></section>
+  <section class="grid"><article class="card"><div class="metric">{{ staff.total_assigned }}</div><h2>Total assigned</h2></article><article class="card"><div class="metric">{{ staff.active_count }}</div><h2>Active</h2><p>{{ workload_status }} workload.</p></article><article class="card"><div class="metric">{{ completion_rate }}%</div><h2>Performance rate</h2></article><article class="card"><h2>Password status</h2><p>{{ staff.must_change_password|yesno:"Must change password,Password changed" }}</p></article></section>
+  <section class="section-head"><h2>Assigned projects</h2></section>
+  <section class="table-card">{% if assigned_projects %}<table><thead><tr><th>Project</th><th>Client</th><th>Service</th><th>Status</th><th>Deadline</th></tr></thead><tbody>{% for project in assigned_projects %}<tr><td><a class="link" href="{% url 'management:project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.client.full_name }}</td><td>{{ project.service|default:"-" }}</td><td>{{ project.status }}</td><td>{{ project.deadline }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No assigned projects.</div>{% endif %}</section>
+{% endblock %}

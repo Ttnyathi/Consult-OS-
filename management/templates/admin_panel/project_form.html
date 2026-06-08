@@ -1,0 +1,21 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+{% block content %}
+  <section class="hero">
+    <div><h1>{{ title }}</h1><p>Capture project details, assignment, deadline, pricing, and payment state.</p></div>
+    <a class="secondary" href="{% url 'management:admin_projects' %}">Back to projects</a>
+  </section>
+  <form class="form-card form-grid form-wide" method="post">
+    {% csrf_token %}
+    <div class="form-section"><h2>Client & Service</h2><p>Select who the work is for and what service it belongs to.</p></div>
+    {{ form.client.as_field_group }}{{ form.service.as_field_group }}
+    <div class="form-section"><h2>Project Details</h2><p>Describe the work clearly for delivery tracking.</p></div>
+    {{ form.title.as_field_group }}{{ form.description.as_field_group }}
+    <div class="form-section"><h2>Assignment & Deadline</h2><p>Assign the work and set delivery expectations.</p></div>
+    {{ form.assigned_staff.as_field_group }}{{ form.deadline.as_field_group }}{{ form.status.as_field_group }}
+    <div class="form-section"><h2>Pricing & Payment</h2><p>Track quote and payment progress.</p></div>
+    {{ form.quoted_price.as_field_group }}{{ form.payment_status.as_field_group }}
+    <div class="form-actions"><button class="primary" type="submit">Save project</button><a class="secondary" href="{% url 'management:admin_projects' %}">Cancel</a></div>
+  </form>
+{% endblock %}

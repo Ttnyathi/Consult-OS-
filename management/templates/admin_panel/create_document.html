@@ -1,0 +1,18 @@
+{% extends "admin_panel/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div>
+      <h1>{{ title }}</h1>
+      <p>Attach client uploads, drafts, final work, reports, or supporting files to a project.</p>
+    </div>
+  </section>
+  <form class="form-card form-grid" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="primary" type="submit">Upload document</button>
+  </form>
+{% endblock %}

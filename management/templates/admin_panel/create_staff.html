@@ -1,0 +1,13 @@
+{% extends "admin_panel/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+
+{% block content %}
+  <section class="hero"><div><h1>{{ title }}</h1><p>Create or update a Django user-linked staff profile. New accounts receive a generated temporary password.</p></div></section>
+  <form class="form-card form-grid" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="primary" type="submit">Save staff</button>
+  </form>
+{% endblock %}

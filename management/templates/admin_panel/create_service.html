@@ -1,0 +1,13 @@
+{% extends "admin_panel/base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+
+{% block content %}
+  <section class="hero"><div><h1>{{ title }}</h1><p>Add or update a service in the business catalogue.</p></div></section>
+  <form class="form-card form-grid" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="primary" type="submit">Save service</button>
+  </form>
+{% endblock %}

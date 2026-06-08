@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block header %}Profile{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>My profile</h1><p>Update your contact details.</p></div></section>
+  <form class="form-card form-grid form-wide" method="post">{% csrf_token %}<div class="form-section"><h2>Contact Information</h2><p>These details help TK Research communicate about your projects.</p></div>{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Save profile</button></div></form>
+{% endblock %}

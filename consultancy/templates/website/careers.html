@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="styles" 
+  <title>Careers | TK Research</title>
+
+  <style>
+
+    /* =========================
+       GOOGLE FONTS
+    ========================= */
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    /* =========================
+       RESET
+    ========================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      color: #07133f;
+      background: #fbfcff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+    .nav {
+      height: 66px;
+
+      background: rgba(255,255,255,.95);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7.5%;
+
+      box-shadow: 0 10px 30px rgba(19,31,82,.08);
+
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mark {
+      font-size: 30px;
+      font-weight: 700;
+      color: #4f42dd;
+      letter-spacing: -2px;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 700;
+    }
+
+    .links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .links .active {
+      color: #4f42dd;
+    }
+
+    .btn {
+      background: #4739d2;
+      color: #fff !important;
+
+      padding: 14px 30px;
+      border-radius: 8px;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================= */
+    .hero {
+      padding: 76px 7.5%;
+
+      background:
+        radial-gradient(circle at 78% 18%, #dfe8ff 0%, transparent 44%),
+        linear-gradient(110deg, #fff, #f6f8ff);
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+
+      padding: 8px 14px;
+      border-radius: 999px;
+
+      background: #f0efff;
+      color: #4f42dd;
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background: #5548db;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      line-height: 1.03;
+
+      margin: 24px 0 18px;
+
+      max-width: 760px;
+    }
+
+    .grad {
+      background: linear-gradient(90deg, #6e45e2, #1474d4);
+
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      font-size: 17px;
+      line-height: 1.75;
+
+      color: #596079;
+
+      max-width: 720px;
+    }
+
+    /* =========================
+       MAIN WRAPPER
+    ========================= */
+    .wrap {
+      padding: 56px 7.5%;
+    }
+
+    /* =========================
+       ROLES SECTION
+    ========================= */
+    .roles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .role {
+      background: #fff;
+
+      border: 1px solid #e0e5f2;
+      border-radius: 14px;
+
+      padding: 30px;
+
+      box-shadow: 0 18px 45px rgba(42,50,96,.08);
+    }
+
+    .icon {
+      width: 60px;
+      height: 60px;
+
+      border-radius: 50%;
+
+      display: grid;
+      place-items: center;
+
+      background: linear-gradient(135deg, #eee9ff, #dfeeff);
+
+      color: #4f42dd;
+      font-size: 28px;
+
+      margin-bottom: 20px;
+    }
+
+    .role h2 {
+      margin: 0 0 10px;
+    }
+
+    .role p {
+      color: #596079;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .role a {
+      display: inline-flex;
+
+      color: #4f42dd;
+      font-weight: 700;
+
+      margin-top: 16px;
+    }
+
+    /* =========================
+       CULTURE SECTION
+    ========================= */
+    .culture {
+      margin-top: 46px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .culture div {
+      background: #f0efff;
+
+      border: 1px solid #e0e5f2;
+      border-radius: 14px;
+
+      padding: 28px;
+    }
+
+    .culture h3 {
+      margin: 0 0 10px;
+    }
+
+    .culture p {
+      margin: 0;
+
+      color: #596079;
+      line-height: 1.65;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width: 900px) {
+
+      .roles,
+      .culture {
+        grid-template-columns: 1fr;
+      }
+
+      .links {
+        display: none;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+  <nav class="nav">
+
+    <a class="brand" href="/">
+      <span class="mark">TK</span>
+      <span class="name">TK Research</span>
+    </a>
+
+    <div class="links">
+
+      <a href="/work/">Services</a>
+      <a href="/people/">People</a>
+      <a href="/insights/">Insights</a>
+
+      <a class="active" href="/careers/">
+        Careers
+      </a>
+
+      <a href="/workflow/">About</a>
+
+      <a class="btn" href="/contact/">
+        Contact Us
+      </a>
+
+    </div>
+
+  </nav>
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+  <section class="hero">
+
+    <span class="pill">
+      <span class="dot"></span>
+      Careers
+    </span>
+
+    <h1>
+      Work where careful thinking becomes
+      <span class="grad">
+        useful work.
+      </span>
+    </h1>
+
+    <p class="lead">
+      TK Research is building a network of researchers,
+      analysts, editors, and advisory consultants who
+      value rigour, clarity, discretion, and delivery.
+    </p>
+
+  </section>
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+  <main class="wrap">
+
+    <!-- Roles Section -->
+    <section class="roles">
+
+      <!-- Research Associate -->
+      <article class="role">
+
+        <div class="icon">⌁</div>
+
+        <h2>Research Associate</h2>
+
+        <p>
+          Support literature reviews, proposal drafting,
+          field instruments, synthesis, and source organisation.
+        </p>
+
+        <a href="/contact/">
+          Register interest →
+        </a>
+
+      </article>
+
+      <!-- Data Analyst -->
+      <article class="role">
+
+        <div class="icon">▥</div>
+
+        <h2>Data Analyst</h2>
+
+        <p>
+          Work on survey cleaning, descriptive analysis,
+          dashboards, KPI packs, coding, and interpretation.
+        </p>
+
+        <a href="/contact/">
+          Register interest →
+        </a>
+
+      </article>
+
+      <!-- Editorial Consultant -->
+      <article class="role">
+
+        <div class="icon">✎</div>
+
+        <h2>Editorial Consultant</h2>
+
+        <p>
+          Refine academic, technical, and advisory documents
+          for structure, clarity, logic, and presentation.
+        </p>
+
+        <a href="/contact/">
+          Register interest →
+        </a>
+
+      </article>
+
+    </section>
+
+    <!-- Culture Section -->
+    <section class="culture">
+
+      <div>
+
+        <h3>What TK looks for</h3>
+
+        <p>
+          Strong writers, careful analysts, disciplined
+          researchers, responsive collaborators, and people
+          who can explain technical work without hiding
+          behind jargon.
+        </p>
+
+      </div>
+
+      <div>
+
+        <h3>How collaboration works</h3>
+
+        <p>
+          Projects are scoped around clear deliverables,
+          review cycles, evidence standards, and
+          client-ready communication.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</body>
+</html>

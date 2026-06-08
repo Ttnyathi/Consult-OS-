@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Contact | TK Research</title>
+
+  <style>
+    /* Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&family=Playfair+Display:wght@600;700&display=swap');
+
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'DM Sans', sans-serif;
+      color: #07133f;
+      background: #fbfcff;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+    .nav {
+      height: 66px;
+      background: rgba(255,255,255,.95);
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 0 7.5%;
+
+      box-shadow: 0 10px 30px rgba(19,31,82,.08);
+
+      position: sticky;
+      top: 0;
+      z-index: 5;
+    }
+
+    .brand {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .mark {
+      font-size: 30px;
+      font-weight: 700;
+      color: #4f42dd;
+      letter-spacing: -2px;
+    }
+
+    .name {
+      font-family: 'Playfair Display', serif;
+      font-size: 23px;
+      font-weight: 700;
+    }
+
+    .links {
+      display: flex;
+      gap: 34px;
+      align-items: center;
+
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .links .active {
+      color: #4f42dd;
+    }
+
+    .btn {
+      background: #4739d2;
+      color: #fff !important;
+
+      padding: 14px 30px;
+      border-radius: 8px;
+    }
+
+    /* =========================
+       HERO SECTION
+    ========================= */
+    .hero {
+      padding: 76px 7.5%;
+
+      background:
+        radial-gradient(circle at 78% 18%, #dfe8ff 0%, transparent 44%),
+        linear-gradient(110deg, #fff, #f6f8ff);
+    }
+
+    .pill {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+
+      padding: 8px 14px;
+      border-radius: 999px;
+
+      background: #f0efff;
+      color: #4f42dd;
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #5548db;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 56px;
+      line-height: 1.03;
+
+      margin: 24px 0 18px;
+      max-width: 780px;
+    }
+
+    .grad {
+      background: linear-gradient(90deg, #6e45e2, #1474d4);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      font-size: 17px;
+      line-height: 1.75;
+      color: #596079;
+
+      max-width: 720px;
+    }
+
+    /* =========================
+       MAIN CONTENT
+    ========================= */
+    .wrap {
+      padding: 56px 7.5%;
+
+      display: grid;
+      grid-template-columns: 1fr .9fr;
+      gap: 26px;
+    }
+
+    .form,
+    .side {
+      background: #fff;
+      border: 1px solid #e0e5f2;
+      border-radius: 16px;
+
+      padding: 34px;
+
+      box-shadow: 0 18px 45px rgba(42,50,96,.08);
+    }
+
+    .form h2,
+    .side h2 {
+      font-family: 'Playfair Display', serif;
+      margin: 0 0 18px;
+    }
+
+    /* =========================
+       FORM ELEMENTS
+    ========================= */
+    input,
+    textarea {
+      width: 100%;
+
+      border: 1px solid #dce3f2;
+      border-radius: 10px;
+
+      padding: 15px 16px;
+
+      font: inherit;
+      margin-bottom: 14px;
+
+      color: #07133f;
+      background: #fbfcff;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .submit {
+      display: block;
+      text-align: center;
+
+      background: #4739d2;
+      color: #fff;
+
+      padding: 15px;
+      border-radius: 10px;
+
+      font-weight: 700;
+    }
+
+    /* =========================
+       SIDEBAR
+    ========================= */
+    .side p {
+      color: #596079;
+      line-height: 1.65;
+    }
+
+    .info {
+      display: grid;
+      gap: 14px;
+
+      margin-top: 24px;
+    }
+
+    .info div {
+      background: #f5f7ff;
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .info strong {
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+    @media (max-width: 900px) {
+
+      .wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .links {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================== -->
+  <nav class="nav">
+
+    <a class="brand" href="/">
+      <span class="mark">TK</span>
+      <span class="name">TK Research</span>
+    </a>
+
+    <div class="links">
+      <a href="/work/">Services</a>
+      <a href="/people/">People</a>
+      <a href="/insights/">Insights</a>
+      <a href="/careers/">Careers</a>
+      <a href="/workflow/">About</a>
+      <a href="/panel/login/">Staff Login</a>
+
+      <a class="btn active" href="/contact/">
+        Contact Us
+      </a>
+    </div>
+
+  </nav>
+
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+  <section class="hero">
+
+    <span class="pill">
+      <span class="dot"></span>
+      Contact
+    </span>
+
+    <h1>
+      Tell us what you need to
+      <span class="grad">
+        understand, prove, or deliver.
+      </span>
+    </h1>
+
+    <p class="lead">
+      Share the assignment, deadline, audience,
+      and current materials. TK Research will help
+      turn the brief into a clear scope.
+    </p>
+
+  </section>
+
+  <!-- =========================
+       MAIN SECTION
+  ========================== -->
+  <main class="wrap">
+
+    <!-- Contact Form -->
+    <section class="form">
+
+      <h2>Start with a sharp brief</h2>
+
+      <input placeholder="Your name">
+      <input placeholder="Email address">
+      <input placeholder="Service area">
+      <input placeholder="Project deadline">
+
+      <textarea placeholder="Brief summary"></textarea>
+
+      <a class="submit" href="mailto:nyathiterrance6@gmail.com">
+        Send by email →
+      </a>
+
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="side">
+
+      <h2>What helps us respond quickly</h2>
+
+      <p>
+        A useful first message includes the service
+        you need, the decision or submission it supports,
+        your deadline, expected format, and any source
+        documents already available.
+      </p>
+
+      <div class="info">
+
+        <div>
+          <strong>Email</strong>
+          nyathiterrance6@gmail.com
+        </div>
+
+        <div>
+          <strong>Region</strong>
+          Southern Africa
+        </div>
+
+        <div>
+          <strong>Typical inputs</strong>
+          Briefs, drafts, data files, rubrics,
+          donor templates, report outlines,
+          or rough notes.
+        </div>
+
+      </div>
+
+    </aside>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Payments{% endblock %}
+{% block header %}Payments{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>My payments</h1><p>Payment records linked to your projects.</p></div></section>
+  <section class="table-card">{% if payments %}<table><thead><tr><th>Project</th><th>Amount</th><th>Method</th><th>Status</th><th>Date</th></tr></thead><tbody>{% for payment in payments %}<tr><td><a class="link" href="{% url 'client:client_payment_detail' payment.id %}">{{ payment.project.title }}</a></td><td>${{ payment.amount }}</td><td>{{ payment.payment_method }}</td><td>{{ payment.status }}</td><td>{{ payment.payment_date }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No payments yet.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=payments %}
+{% endblock %}

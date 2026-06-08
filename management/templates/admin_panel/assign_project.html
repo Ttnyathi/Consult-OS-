@@ -1,0 +1,16 @@
+{% extends "admin_panel/base.html" %}
+
+{% block title %}Assign Project{% endblock %}
+{% block header %}Assign project{% endblock %}
+
+{% block content %}
+  <section class="hero">
+    <div><h1>Assign staff</h1><p>{{ project.title }}</p></div>
+  </section>
+  <form class="form-card form-grid" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="primary" type="submit">Save assignment</button>
+    <a class="secondary" href="{% url 'management:project_detail' project.id %}">Cancel</a>
+  </form>
+{% endblock %}

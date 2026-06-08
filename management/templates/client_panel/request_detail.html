@@ -1,0 +1,9 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Request Detail{% endblock %}
+{% block header %}Request Detail{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ project.title }}</h1><p>{{ project.service|default:"No service" }} · {{ project.status }}</p></div><a class="secondary" href="{% url 'client:client_requests' %}">Back</a></section>
+  <section class="grid"><article class="card"><h2>Approval status</h2><p><span class="badge">{{ project.status }}</span></p></article><article class="card"><h2>Assigned staff</h2><p>{{ project.assigned_staff|default:"Not assigned yet" }}</p></article><article class="card"><h2>Quote</h2><p>${{ project.quoted_price|default:"Pending review" }}</p></article></section>
+  <section class="card"><h2>Instructions</h2><p>{{ project.description }}</p></section>
+  <section class="section-head"><h2>Documents</h2></section><section class="table-card">{% if documents %}<table><tbody>{% for document in documents %}<tr><td><a class="link" href="{{ document.file.url }}">{{ document.document_type }}</a></td><td>{{ document.uploaded_at }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No documents yet.</div>{% endif %}</section>
+{% endblock %}

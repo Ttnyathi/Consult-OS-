@@ -1,0 +1,7 @@
+{% extends "staff_panel/base.html" %}
+{% block title %}Profile{% endblock %}
+{% block header %}Profile{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ staff.full_name }}</h1><p>{{ staff.role }}</p></div></section>
+  <section class="grid"><article class="card"><h2>Phone</h2><p>{{ staff.phone|default:"-" }}</p></article><article class="card"><h2>Status</h2><p>{{ staff.is_active|yesno:"Active,Inactive" }}</p></article><article class="card"><h2>Password</h2><p>{{ staff.must_change_password|yesno:"Must change password,Password changed" }}</p></article></section>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Staff Portal{% endblock %} | TK Research</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+  <div class="layout">
+    {% include "staff_panel/sidebar.html" %}
+    <section class="main-content content">
+      <header class="topbar">
+        <strong>{% block header %}Staff Portal{% endblock %}</strong>
+        <nav class="top-actions">
+          <a class="link" href="/">Website</a>
+          <a class="link" href="{% url 'staff:staff_notifications' %}">Notifications{% if unread_notification_count %} {{ unread_notification_count }}{% endif %}</a>
+          <a class="link" href="{% url 'staff:staff_profile' %}">Profile</a>
+        </nav>
+      </header>
+      <main class="page">
+        {% if messages %}
+          <div class="messages">{% for message in messages %}<div class="message {{ message.tags }}">{{ message }}</div>{% endfor %}</div>
+        {% endif %}
+        {% block content %}{% endblock %}
+      </main>
+    </section>
+  </div>
+</body>
+</html>

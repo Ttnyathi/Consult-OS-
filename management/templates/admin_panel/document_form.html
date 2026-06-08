@@ -1,0 +1,7 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ title }}</h1><p>Attach files to a project. The uploader is recorded automatically.</p></div><a class="secondary" href="{% url 'management:admin_documents' %}">Back to documents</a></section>
+  <form class="form-card form-grid form-wide" method="post" enctype="multipart/form-data">{% csrf_token %}<div class="form-section"><h2>Document Details</h2><p>Choose the project, document type, and file.</p></div>{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Upload</button><a class="secondary" href="{% url 'management:admin_documents' %}">Cancel</a></div></form>
+{% endblock %}

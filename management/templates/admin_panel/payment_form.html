@@ -1,0 +1,7 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ title }}</h1><p>Record project payments and keep balances up to date.</p></div><a class="secondary" href="{% url 'management:admin_payments' %}">Back to payments</a></section>
+  <form class="form-card form-grid form-wide" method="post">{% csrf_token %}<div class="form-section"><h2>Payment Details</h2><p>Confirmed payments count toward revenue and project balances.</p></div>{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Save payment</button><a class="secondary" href="{% url 'management:admin_payments' %}">Cancel</a></div></form>
+{% endblock %}

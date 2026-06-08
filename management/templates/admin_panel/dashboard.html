@@ -1,0 +1,144 @@
+{% extends "admin_panel/base.html" %}
+
+{% block title %}Dashboard | TK Management{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+{% block page_subtitle %}Live overview of clients, projects, assignments and revenue{% endblock %}
+
+{% block content %}
+
+<div class="stats-grid">
+    <div class="stat-card blue">
+        <span>Total Clients</span>
+        <h2>{{ total_clients }}</h2>
+        <p>All registered clients</p>
+    </div>
+
+    <div class="stat-card purple">
+        <span>Active Projects</span>
+        <h2>{{ in_progress_projects }}</h2>
+        <p>Currently in progress</p>
+    </div>
+
+    <div class="stat-card green">
+        <span>Completed</span>
+        <h2>{{ completed_projects }}</h2>
+        <p>{{ completion_rate }}% completion rate</p>
+    </div>
+
+    <div class="stat-card orange">
+        <span>Total Revenue</span>
+        <h2>${{ total_revenue }}</h2>
+        <p>Confirmed payments</p>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+
+    <div class="panel large-panel">
+        <div class="panel-header">
+            <h3>Recent Projects</h3>
+            <a href="{% url 'management:admin_projects' %}">View all</a>
+        </div>
+
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Project</th>
+                    <th>Client</th>
+                    <th>Service</th>
+                    <th>Assigned</th>
+                    <th>Status</th>
+                    <th>Payment</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for project in recent_projects %}
+                <tr>
+                    <td>{{ project.title }}</td>
+                    <td>{{ project.client.full_name }}</td>
+                    <td>{{ project.service.name }}</td>
+                    <td>
+                        {% if project.assigned_staff %}
+                            {{ project.assigned_staff.full_name }}
+                        {% else %}
+                            <span class="muted">Unassigned</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <span class="badge status-{{ project.status|slugify }}">
+                            {{ project.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge payment-{{ project.payment_status|slugify }}">
+                            {{ project.payment_status }}
+                        </span>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="6" class="empty-row">No projects yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="panel">
+        <div class="panel-header">
+            <h3>Staff Performance</h3>
+        </div>
+
+        <div class="staff-list">
+            {% for staff in staff_performance %}
+            <div class="staff-card">
+                <div class="staff-avatar">
+                    {{ staff.full_name|slice:":2"|upper }}
+                </div>
+
+                <div class="staff-info">
+                    <strong>{{ staff.full_name }}</strong>
+                    <small>{{ staff.role }}</small>
+
+                    <div class="progress-bar">
+                        <div style="width: {% if staff.total_assigned > 0 %}{{ staff.completed|floatformat:0 }}0{% else %}0{% endif %}%"></div>
+                    </div>
+
+                    <p>
+                        {{ staff.completed }} completed /
+                        {{ staff.total_assigned }} assigned
+                    </p>
+                </div>
+            </div>
+            {% empty %}
+            <p class="empty-text">No staff members yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+<div class="dashboard-grid three">
+
+    <div class="panel mini-panel">
+        <h3>Pending Requests</h3>
+        <h2>{{ pending_projects }}</h2>
+        <p>Projects waiting for quotation or action.</p>
+    </div>
+
+    <div class="panel mini-panel">
+        <h3>Under Review</h3>
+        <h2>{{ under_review_projects }}</h2>
+        <p>Work currently waiting for checking.</p>
+    </div>
+
+    <div class="panel mini-panel">
+        <h3>Staff Members</h3>
+        <h2>{{ total_staff }}</h2>
+        <p>Active internal users.</p>
+    </div>
+
+</div>
+
+{% endblock %}

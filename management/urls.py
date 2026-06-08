@@ -1,0 +1,58 @@
+from django.contrib.auth import views as auth_views
+from django.urls import path
+
+from . import views
+
+
+app_name = "management"
+
+urlpatterns = [
+    path("", views.admin_dashboard, name="panel_home"),
+    path("dashboard/", views.admin_dashboard, name="admin_dashboard"),
+    path("clients/", views.admin_clients, name="admin_clients"),
+    path("clients/create/", views.create_client, name="create_client"),
+    path("clients/<int:id>/", views.client_detail, name="client_detail"),
+    path("clients/<int:id>/edit/", views.edit_client, name="edit_client"),
+    path("clients/<int:id>/delete/", views.delete_client, name="delete_client"),
+    path("clients/<int:id>/reset-password/", views.reset_client_password, name="reset_client_password"),
+    path("staff/", views.admin_staff, name="admin_staff"),
+    path("staff/create/", views.create_staff, name="create_staff"),
+    path("staff/<int:id>/", views.staff_detail, name="staff_detail"),
+    path("staff/<int:id>/edit/", views.edit_staff, name="edit_staff"),
+    path("staff/<int:id>/toggle/", views.toggle_staff, name="toggle_staff"),
+    path("staff/<int:id>/reset-password/", views.reset_staff_password, name="reset_staff_password"),
+    path("services/", views.admin_services, name="admin_services"),
+    path("services/create/", views.create_service, name="create_service"),
+    path("services/<int:id>/edit/", views.edit_service, name="edit_service"),
+    path("services/<int:id>/toggle/", views.toggle_service, name="toggle_service"),
+    path("services/<int:id>/delete/", views.delete_service, name="delete_service"),
+    path("projects/", views.admin_projects, name="admin_projects"),
+    path("projects/create/", views.create_project, name="create_project"),
+    path("projects/<int:id>/", views.project_detail, name="project_detail"),
+    path("projects/<int:id>/edit/", views.edit_project, name="edit_project"),
+    path("projects/<int:id>/assign/", views.assign_project, name="assign_project"),
+    path("projects/<int:id>/status/", views.update_project_status, name="update_project_status"),
+    path("documents/", views.admin_documents, name="admin_documents"),
+    path("documents/upload/", views.create_document, name="upload_document"),
+    path("documents/create/", views.create_document, name="create_document"),
+    path("projects/<int:id>/documents/upload/", views.create_document, name="upload_project_document"),
+    path("documents/<int:id>/delete/", views.delete_document, name="delete_document"),
+    path("payments/", views.admin_payments, name="admin_payments"),
+    path("payments/create/", views.create_payment, name="create_payment"),
+    path("projects/<int:id>/payments/create/", views.create_payment, name="create_project_payment"),
+    path("payments/<int:id>/", views.payment_detail, name="payment_detail"),
+    path("payments/<int:id>/edit/", views.edit_payment, name="edit_payment"),
+    path("assignments/", views.admin_assignments, name="admin_assignments"),
+    path("reports/", views.admin_reports, name="admin_reports"),
+    path("reports/projects.csv", views.export_projects_csv, name="export_projects_csv"),
+    path("reports/payments.csv", views.export_payments_csv, name="export_payments_csv"),
+    path("settings/", views.admin_settings, name="admin_settings"),
+    path("requests/", views.admin_requests, name="admin_requests"),
+    path("requests/<int:id>/", views.admin_request_detail, name="admin_request_detail"),
+    path("requests/<int:id>/approve/", views.approve_request, name="approve_request"),
+    path("requests/<int:id>/reject/", views.reject_request, name="reject_request"),
+    path("notifications/", views.admin_notifications, name="admin_notifications"),
+    path("notifications/<int:id>/read/", views.admin_notification_read, name="admin_notification_read"),
+    path("login/", views.management_login, name="login"),
+    path("logout/", auth_views.LogoutView.as_view(next_page="management:login"), name="logout"),
+]

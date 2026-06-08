@@ -1,0 +1,7 @@
+{% extends "staff_panel/base.html" %}
+{% block title %}Notifications{% endblock %}
+{% block header %}Notifications{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Notifications</h1><p>Project updates assigned to you.</p></div></section>
+  <section class="table-card">{% if notifications %}<table><tbody>{% for item in notifications %}<tr><td>{{ item.title }}{% if not item.is_read %} <span class="badge warn">Unread</span>{% endif %}</td><td>{{ item.message }}</td><td>{{ item.created_at }}</td><td><a class="secondary" href="{% url 'staff:staff_notification_read' item.id %}">Open</a></td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No notifications.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=notifications %}
+{% endblock %}

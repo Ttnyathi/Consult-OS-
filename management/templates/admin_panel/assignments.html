@@ -1,0 +1,8 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Assignments{% endblock %}
+{% block header %}Assignments{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Assignment management</h1><p>Balance workload across staff and quickly reassign work.</p></div></section>
+  <form class="toolbar" method="get"><select name="role"><option value="">All roles</option>{% for value,label in roles %}<option value="{{ value }}" {% if selected_role == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><select name="workload"><option value="">Any workload</option>{% for item in workload_choices %}<option value="{{ item }}" {% if selected_workload == item %}selected{% endif %}>{{ item }}</option>{% endfor %}</select><button class="secondary" type="submit">Filter</button></form>
+  <section class="table-card">{% if rows %}<table><thead><tr><th>Staff</th><th>Active</th><th>Completed</th><th>Overdue</th><th>Load</th><th>Assigned projects</th></tr></thead><tbody>{% for row in rows %}<tr><td><a class="link" href="{% url 'management:staff_detail' row.member.id %}">{{ row.member.full_name }}</a></td><td>{{ row.member.active_count }}</td><td>{{ row.member.completed_count }}</td><td>{{ row.member.overdue_count }}</td><td><span class="badge">{{ row.workload_status }}</span></td><td>{% for project in row.projects %}<p><a class="link" href="{% url 'management:assign_project' project.id %}">{{ project.title }}</a> · {{ project.deadline }}</p>{% empty %}<p>No active projects.</p>{% endfor %}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No assignment rows found.</div>{% endif %}</section>
+{% endblock %}

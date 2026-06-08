@@ -1,0 +1,7 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}{{ title }}{% endblock %}
+{% block header %}{{ title }}{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ title }}</h1><p>Manage the services TK Research offers.</p></div><a class="secondary" href="{% url 'management:admin_services' %}">Back to services</a></section>
+  <form class="form-card form-grid form-wide" method="post">{% csrf_token %}<div class="form-section"><h2>Service Information</h2><p>Set pricing, delivery estimate, and availability.</p></div>{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Save service</button><a class="secondary" href="{% url 'management:admin_services' %}">Cancel</a></div></form>
+{% endblock %}

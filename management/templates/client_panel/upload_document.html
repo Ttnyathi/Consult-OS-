@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Upload Document{% endblock %}
+{% block header %}Upload Document{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Upload file</h1><p>{{ project.title }}. You can upload client files and supporting documents.</p></div><a class="secondary" href="{% url 'client:client_project_detail' project.id %}">Back</a></section>
+  <form class="form-card form-grid form-wide" method="post" enctype="multipart/form-data">{% csrf_token %}<div class="form-section"><h2>Document</h2><p>Drafts, final work, and plagiarism reports are uploaded by TK Research staff.</p></div>{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Upload</button><a class="secondary" href="{% url 'client:client_project_detail' project.id %}">Cancel</a></div></form>
+{% endblock %}

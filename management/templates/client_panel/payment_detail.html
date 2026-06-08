@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Payment {{ payment.id }}{% endblock %}
+{% block header %}Payment Detail{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Receipt #{{ payment.id }}</h1><p>{{ payment.project.title }}</p></div><button class="primary" onclick="window.print()">Print</button></section>
+  <section class="receipt"><h2>{{ company_name }}</h2><div class="detail-list"><div><strong>Client</strong><span>{{ payment.project.client.full_name }}</span></div><div><strong>Project</strong><span>{{ payment.project.title }}</span></div><div><strong>Service</strong><span>{{ payment.project.service|default:"-" }}</span></div><div><strong>Amount</strong><span>${{ payment.amount }}</span></div><div><strong>Method</strong><span>{{ payment.payment_method }}</span></div><div><strong>Reference</strong><span>{{ payment.reference|default:"-" }}</span></div><div><strong>Date</strong><span>{{ payment.payment_date }}</span></div><div><strong>Status</strong><span>{{ payment.status }}</span></div></div></section>
+{% endblock %}

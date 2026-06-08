@@ -1,0 +1,12 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Review Request{% endblock %}
+{% block header %}Review Request{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ project.title }}</h1><p>{{ project.client.full_name }} · {{ project.service|default:"No service" }}</p></div><a class="secondary" href="{% url 'management:admin_requests' %}">Back</a></section>
+  <section class="grid-2">
+    <article class="card"><h2>Client instructions</h2><p>{{ project.description }}</p><div class="detail-list"><div><strong>Deadline</strong><span>{{ project.deadline }}</span></div><div><strong>Status</strong><span>{{ project.status }}</span></div><div><strong>Payment</strong><span>{{ project.payment_status }}</span></div></div></article>
+    <article class="card"><h2>Approve request</h2><form class="form-grid" method="post" action="{% url 'management:approve_request' project.id %}">{% csrf_token %}{{ form.as_p }}<button class="primary" type="submit">Approve and assign</button><a class="secondary" href="{% url 'management:reject_request' project.id %}">Reject request</a></form></article>
+  </section>
+  <section class="section-head"><h2>Submitted files</h2></section>
+  <section class="table-card">{% if documents %}<table><tbody>{% for document in documents %}<tr><td><a class="link" href="{{ document.file.url }}">{{ document.document_type }}</a></td><td>{{ document.uploaded_by|default:"-" }}</td><td>{{ document.uploaded_at }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No files submitted with this request.</div>{% endif %}</section>
+{% endblock %}

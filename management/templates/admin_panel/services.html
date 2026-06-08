@@ -1,0 +1,7 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Services{% endblock %}
+{% block header %}Services{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Services</h1><p>Manage service catalogue, pricing, activity, and revenue.</p></div><a class="primary" href="{% url 'management:create_service' %}">Create service</a></section>
+  <section class="table-card">{% if services %}<table><thead><tr><th>Name</th><th>Base price</th><th>Days</th><th>Projects</th><th>Revenue</th><th>Active</th><th></th></tr></thead><tbody>{% for service in services %}<tr><td>{{ service.name }}</td><td>${{ service.base_price }}</td><td>{{ service.estimated_days }}</td><td>{{ service.project_count }}</td><td>${{ service.revenue|default:"0.00" }}</td><td>{{ service.is_active|yesno:"Yes,No" }}</td><td><div class="card-actions"><a class="secondary" href="{% url 'management:edit_service' service.id %}">Edit</a><a class="secondary" href="{% url 'management:toggle_service' service.id %}">Toggle</a><a class="secondary" href="{% url 'management:delete_service' service.id %}">Delete if safe</a></div></td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No services yet.</div>{% endif %}</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Receipt {{ payment.id }}{% endblock %}
+{% block header %}Receipt{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Receipt #{{ payment.id }}</h1><p>{{ payment.project.client.full_name }} · {{ payment.project.title }}</p></div><div class="card-actions"><button class="primary" onclick="window.print()">Print receipt</button><a class="secondary" href="{% url 'management:edit_payment' payment.id %}">Edit payment</a></div></section>
+  <section class="receipt">
+    <h2>{{ company_name }}</h2>
+    <p>Receipt number: #{{ payment.id }}</p>
+    <div class="detail-list">
+      <div><strong>Client</strong><span>{{ payment.project.client.full_name }}</span></div>
+      <div><strong>Project</strong><span>{{ payment.project.title }}</span></div>
+      <div><strong>Service</strong><span>{{ payment.project.service|default:"-" }}</span></div>
+      <div><strong>Amount paid</strong><span>${{ payment.amount }}</span></div>
+      <div><strong>Method</strong><span>{{ payment.payment_method }}</span></div>
+      <div><strong>Reference</strong><span>{{ payment.reference|default:"-" }}</span></div>
+      <div><strong>Date</strong><span>{{ payment.payment_date }}</span></div>
+      <div><strong>Status</strong><span>{{ payment.status }}</span></div>
+      <div><strong>Issued by</strong><span>{{ request.user.username }}</span></div>
+    </div>
+  </section>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Documents{% endblock %}
+{% block header %}Documents{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>My documents</h1><p>All files linked to your projects.</p></div></section>
+  <section class="table-card">{% if documents %}<table><thead><tr><th>Project</th><th>Type</th><th>File</th><th>Date</th></tr></thead><tbody>{% for document in documents %}<tr><td><a class="link" href="{% url 'client:client_project_detail' document.project.id %}">{{ document.project.title }}</a></td><td>{{ document.document_type }}</td><td><a class="link" href="{{ document.file.url }}">{{ document.file.name }}</a></td><td>{{ document.uploaded_at }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No documents yet.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=documents %}
+{% endblock %}

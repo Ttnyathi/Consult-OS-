@@ -1,0 +1,17 @@
+{% extends "staff_panel/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block header %}Dashboard{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Welcome, {{ staff.full_name }}</h1><p>Your assigned TK Research workload.</p></div></section>
+  <section class="grid">
+    <article class="card"><div class="metric">{{ total_projects }}</div><h2>Total assigned</h2></article>
+    <article class="card"><div class="metric">{{ active_projects }}</div><h2>Active</h2></article>
+    <article class="card"><div class="metric">{{ under_review_projects }}</div><h2>Under review</h2></article>
+    <article class="card"><div class="metric">{{ completed_projects }}</div><h2>Completed</h2></article>
+  </section>
+  <section class="grid-2 section-head"><h2>Recent projects</h2><h2>Upcoming deadlines</h2></section>
+  <section class="grid-2">
+    <div class="table-card">{% if recent_projects %}<table><tbody>{% for project in recent_projects %}<tr><td><a class="link" href="{% url 'staff:staff_project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.status }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No assigned projects.</div>{% endif %}</div>
+    <div class="table-card">{% if upcoming_deadlines %}<table><tbody>{% for project in upcoming_deadlines %}<tr><td><a class="link" href="{% url 'staff:staff_project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.deadline }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No upcoming deadlines.</div>{% endif %}</div>
+  </section>
+{% endblock %}

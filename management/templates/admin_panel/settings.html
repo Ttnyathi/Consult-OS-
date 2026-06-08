@@ -1,0 +1,7 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Settings{% endblock %}
+{% block header %}Settings{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Settings</h1><p>Configuration placeholders for the admin portal.</p></div></section>
+  <section class="grid"><article class="card"><h2>Company</h2><p>{{ company_name }}</p></article><article class="card"><h2>Logged in admin</h2><p>{{ admin_user.username }}</p></article><article class="card"><h2>Branding</h2><p>Logo and colors placeholder.</p></article><article class="card"><h2>Notifications</h2><p>Email and deadline alert settings placeholder.</p></article><article class="card"><h2>Payments</h2><p>Payment method configuration placeholder.</p></article></section>
+{% endblock %}

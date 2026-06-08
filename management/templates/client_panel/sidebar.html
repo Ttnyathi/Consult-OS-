@@ -1,0 +1,23 @@
+<aside class="sidebar">
+  <a class="brand" href="{% url 'client:client_dashboard' %}">TK Research</a>
+  <div>
+    <div class="side-label">Client Portal</div>
+    <nav class="side-nav">
+      <a href="{% url 'client:client_dashboard' %}">Dashboard</a>
+      <a href="{% url 'client:client_create_request' %}">New Request</a>
+      <a href="{% url 'client:client_requests' %}">My Requests</a>
+      <a href="{% url 'client:client_projects' %}">Projects</a>
+      <a href="{% url 'client:client_documents' %}">Documents</a>
+      <a href="{% url 'client:client_payments' %}">Payments</a>
+      <a href="{% url 'client:client_notifications' %}">Notifications{% if unread_notification_count %} ({{ unread_notification_count }}){% endif %}</a>
+      <a href="{% url 'client:client_profile' %}">Profile</a>
+    </nav>
+  </div>
+  <div class="side-footer">
+    <span>Signed in as {{ request.user.username }}</span>
+    <form method="post" action="{% url 'client:logout' %}">
+      {% csrf_token %}
+      <button class="logout" type="submit">Logout</button>
+    </form>
+  </div>
+</aside>

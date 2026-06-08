@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | TK Research</title>
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body class="login-page">
+  <main class="shell">
+    <section class="intro">
+      <a class="brand" href="/">TK Research</a>
+      <div>
+        <h1>TK Research access</h1>
+        <p>Use one login for admin, staff, and client accounts. The system will open the right portal for your role.</p>
+      </div>
+    </section>
+    <section class="panel">
+      <h2>Sign in</h2>
+      <p class="hint">Enter your account credentials. Admins go to /panel/, staff go to /staff/, and clients go to /client/.</p>
+      {% if no_access %}
+        <div class="error">This account does not have a portal profile yet.</div>
+      {% elif form.errors %}
+        <div class="error">Your username or password was not accepted.</div>
+      {% endif %}
+      <form method="post">
+        {% csrf_token %}
+        <label for="{{ form.username.id_for_label }}">Username</label>
+        {{ form.username }}
+        <label for="{{ form.password.id_for_label }}">Password</label>
+        {{ form.password }}
+        <input type="hidden" name="next" value="{{ next }}">
+        <button type="submit">Sign in</button>
+      </form>
+      <a class="back" href="/">Back to website</a>
+    </section>
+  </main>
+</body>
+</html>

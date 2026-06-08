@@ -1,0 +1,15 @@
+{% extends "client_panel/base.html" %}
+{% block title %}{{ project.title }}{% endblock %}
+{% block header %}Project Detail{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>{{ project.title }}</h1><p>{{ project.service|default:"No service" }} · Deadline {{ project.deadline }}</p></div><div class="card-actions"><a class="secondary" href="{% url 'client:client_projects' %}">Back</a><a class="primary" href="{% url 'client:client_upload_document' project.id %}">Upload file</a></div></section>
+  <section class="grid"><article class="card"><h2>Status</h2><p><span class="badge">{{ project.status }}</span></p><p>{{ project.payment_status }}</p></article><article class="card"><h2>Progress</h2><div class="metric">{{ latest_progress.progress_percentage|default:"0" }}%</div></article><article class="card"><h2>Financials</h2><p>Quoted: ${{ project.quoted_price|default:"0.00" }}</p><p>Paid: ${{ amount_paid }}</p><p>Balance: ${{ balance_due }}</p></article><article class="card"><h2>Assigned consultant</h2><p>{{ project.assigned_staff.full_name|default:"Not assigned yet" }}</p></article></section>
+  <section class="card"><h2>Description</h2><p>{{ project.description }}</p></section>
+  <section class="grid-2 section-head"><h2>Documents</h2><h2>Payments</h2></section>
+  <section class="grid-2">
+    <div class="table-card">{% if documents %}<table><tbody>{% for document in documents %}<tr><td><a class="link" href="{{ document.file.url }}">{{ document.document_type }}</a></td><td>{{ document.uploaded_at }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No documents yet.</div>{% endif %}</div>
+    <div class="table-card">{% if payments %}<table><tbody>{% for payment in payments %}<tr><td><a class="link" href="{% url 'client:client_payment_detail' payment.id %}">${{ payment.amount }}</a></td><td>{{ payment.status }}</td><td>{{ payment.payment_date }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No payments yet.</div>{% endif %}</div>
+  </section>
+  <section class="section-head"><h2>Progress timeline</h2></section>
+  <section class="table-card">{% if progress_updates %}<table><tbody>{% for update in progress_updates %}<tr><td><span class="badge">{{ update.progress_percentage }}%</span></td><td><strong>{{ update.title }}</strong><p>{{ update.message }}</p></td><td>{{ update.created_at }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No progress updates yet.</div>{% endif %}</section>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "staff_panel/base.html" %}
+{% block title %}Progress Update{% endblock %}
+{% block header %}Progress Update{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Add progress update</h1><p>{{ project.title }}</p></div><a class="secondary" href="{% url 'staff:staff_project_detail' project.id %}">Back</a></section>
+  <form class="form-card form-grid form-wide" method="post">{% csrf_token %}<div class="form-section"><h2>Progress</h2><p>Tell the client what changed and estimate completion from 0 to 100.</p></div>{{ form.as_p }}<div class="form-actions"><button class="primary" type="submit">Post update</button><a class="secondary" href="{% url 'staff:staff_project_detail' project.id %}">Cancel</a></div></form>
+{% endblock %}

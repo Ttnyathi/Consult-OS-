@@ -1,0 +1,9 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Clients{% endblock %}
+{% block header %}Clients{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Clients</h1><p>Search, view, create, edit, and safely delete clients.</p></div><a class="primary" href="{% url 'management:create_client' %}">Create client</a></section>
+  <form class="toolbar" method="get"><input name="q" value="{{ query }}" placeholder="Search name, email, phone, institution"><button class="secondary" type="submit">Search</button></form>
+  <section class="table-card">{% if clients %}<table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Institution</th><th>Joined</th><th></th></tr></thead><tbody>{% for client in clients %}<tr><td><a class="link" href="{% url 'management:client_detail' client.id %}">{{ client.full_name }}</a></td><td>{{ client.email }}</td><td>{{ client.phone|default:"-" }}</td><td>{{ client.institution|default:"-" }}</td><td>{{ client.created_at }}</td><td><a class="secondary" href="{% url 'management:edit_client' client.id %}">Edit</a></td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No clients found.</div>{% endif %}</section>
+  {% include "admin_panel/pagination.html" with page_obj=clients %}
+{% endblock %}

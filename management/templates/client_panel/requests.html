@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}My Requests{% endblock %}
+{% block header %}My Requests{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>My requests</h1><p>Requests you submitted to TK Research.</p></div><a class="primary" href="{% url 'client:client_create_request' %}">New Request</a></section>
+  <section class="table-card">{% if requests %}<table><thead><tr><th>Request</th><th>Service</th><th>Deadline</th><th>Status</th><th>Assigned staff</th></tr></thead><tbody>{% for project in requests %}<tr><td><a class="link" href="{% url 'client:client_request_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.service|default:"-" }}</td><td>{{ project.deadline }}</td><td><span class="badge">{{ project.status }}</span></td><td>{{ project.assigned_staff|default:"Not assigned" }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No requests yet.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=requests %}
+{% endblock %}

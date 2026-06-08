@@ -1,0 +1,8 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Client Requests{% endblock %}
+{% block header %}Client Requests{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Client requests</h1><p>Review, quote, assign, approve, or reject incoming requests.</p></div></section>
+  <form class="toolbar" method="get"><select name="status"><option value="">All statuses</option>{% for value,label in status_choices %}<option value="{{ value }}" {% if status == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><button class="secondary" type="submit">Filter</button></form>
+  <section class="table-card">{% if requests %}<table><thead><tr><th>Request</th><th>Client</th><th>Service</th><th>Deadline</th><th>Status</th><th>Staff</th></tr></thead><tbody>{% for project in requests %}<tr><td><a class="link" href="{% url 'management:admin_request_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.client.full_name }}</td><td>{{ project.service|default:"-" }}</td><td>{{ project.deadline }}</td><td><span class="badge {% if project.status == 'Pending' %}warn{% endif %}">{{ project.status }}</span></td><td>{{ project.assigned_staff|default:"Unassigned" }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No client requests found.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=requests %}
+{% endblock %}

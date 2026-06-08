@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}New Request{% endblock %}
+{% block header %}New Request{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>New request</h1><p>Tell us what kind of work you need and attach any supporting material.</p></div></section>
+  <form class="form-card form-grid form-wide" method="post" enctype="multipart/form-data">{% csrf_token %}<div class="form-section"><h2>Step 1: Select service</h2><p>Choose the closest service type.</p></div>{{ form.service.as_field_group }}<div class="form-section"><h2>Step 2: Describe work</h2><p>Give clear instructions and expected output.</p></div>{{ form.title.as_field_group }}{{ form.description.as_field_group }}<div class="form-section"><h2>Step 3: Add deadline</h2></div>{{ form.deadline.as_field_group }}<div class="form-section"><h2>Step 4: Upload supporting files</h2><p>This is optional.</p></div>{{ form.supporting_file.as_field_group }}<div class="form-actions"><button class="primary" type="submit">Submit request</button><a class="secondary" href="{% url 'client:client_dashboard' %}">Cancel</a></div></form>
+{% endblock %}

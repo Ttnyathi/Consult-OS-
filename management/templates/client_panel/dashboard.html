@@ -1,0 +1,22 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block header %}Dashboard{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Welcome, {{ client.full_name }}</h1><p>Track your requests, projects, files, payments, and upcoming deadlines.</p></div><a class="primary" href="{% url 'client:client_create_request' %}">New Request</a></section>
+  <section class="grid">
+    <article class="card"><div class="metric">{{ total_projects }}</div><h2>Total projects</h2></article>
+    <article class="card"><div class="metric">{{ active_projects }}</div><h2>Active</h2></article>
+    <article class="card"><div class="metric">{{ completed_projects }}</div><h2>Completed</h2></article>
+    <article class="card"><div class="metric">{{ unpaid_projects }}</div><h2>Unpaid</h2></article>
+    <article class="card"><div class="metric">{{ deposit_projects }}</div><h2>Deposit paid</h2></article>
+    <article class="card"><div class="metric">{{ fully_paid_projects }}</div><h2>Fully paid</h2></article>
+    <article class="card"><div class="metric">{{ pending_requests }}</div><h2>Pending requests</h2></article>
+  </section>
+  <section class="grid-2 section-head"><h2>Upcoming deadlines</h2><h2>Recent documents</h2></section>
+  <section class="grid-2">
+    <div class="table-card">{% if upcoming_deadlines %}<table><tbody>{% for project in upcoming_deadlines %}<tr><td><a class="link" href="{% url 'client:client_project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.deadline }}</td><td>{{ project.status }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No upcoming deadlines.</div>{% endif %}</div>
+    <div class="table-card">{% if recent_documents %}<table><tbody>{% for document in recent_documents %}<tr><td><a class="link" href="{{ document.file.url }}">{{ document.document_type }}</a></td><td>{{ document.project.title }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No documents yet.</div>{% endif %}</div>
+  </section>
+  <section class="section-head"><h2>Recent payments</h2></section>
+  <section class="table-card">{% if recent_payments %}<table><thead><tr><th>Project</th><th>Amount</th><th>Status</th><th>Date</th></tr></thead><tbody>{% for payment in recent_payments %}<tr><td><a class="link" href="{% url 'client:client_payment_detail' payment.id %}">{{ payment.project.title }}</a></td><td>${{ payment.amount }}</td><td>{{ payment.status }}</td><td>{{ payment.payment_date }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No payments yet.</div>{% endif %}</section>
+{% endblock %}

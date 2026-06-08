@@ -1,0 +1,7 @@
+{% extends "client_panel/base.html" %}
+{% block title %}Projects{% endblock %}
+{% block header %}Projects{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>My projects</h1><p>Only projects linked to your client account are shown here.</p></div></section>
+  <section class="table-card">{% if projects %}<table><thead><tr><th>Project</th><th>Service</th><th>Status</th><th>Payment</th><th>Deadline</th></tr></thead><tbody>{% for project in projects %}<tr><td><a class="link" href="{% url 'client:client_project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.service|default:"-" }}</td><td><span class="badge">{{ project.status }}</span></td><td>{{ project.payment_status }}</td><td>{{ project.deadline }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">You do not have projects yet.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=projects %}
+{% endblock %}

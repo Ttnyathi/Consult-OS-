@@ -1,0 +1,8 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Staff{% endblock %}
+{% block header %}Staff{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Staff</h1><p>Manage workers, roles, workload, and performance.</p></div><a class="primary" href="{% url 'management:create_staff' %}">Create staff</a></section>
+  <form class="toolbar" method="get"><select name="role"><option value="">All roles</option>{% for value,label in roles %}<option value="{{ value }}" {% if selected_role == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select><button class="secondary" type="submit">Filter</button></form>
+  <section class="table-card">{% if staff_rows %}<table><thead><tr><th>Name</th><th>Role</th><th>Active projects</th><th>Completed</th><th>Performance</th><th>Load</th><th>Status</th><th></th></tr></thead><tbody>{% for row in staff_rows %}<tr><td><a class="link" href="{% url 'management:staff_detail' row.member.id %}">{{ row.member.full_name }}</a></td><td>{{ row.member.role }}</td><td>{{ row.member.active_count }}</td><td>{{ row.member.completed_count }}</td><td>{{ row.completion_rate }}%</td><td><span class="badge">{{ row.workload_status }}</span></td><td>{{ row.member.is_active|yesno:"Active,Inactive" }}</td><td><a class="secondary" href="{% url 'management:edit_staff' row.member.id %}">Edit</a></td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No staff profiles.</div>{% endif %}</section>
+{% endblock %}

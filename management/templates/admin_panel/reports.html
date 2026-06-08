@@ -1,0 +1,10 @@
+{% extends "admin_panel/base.html" %}
+{% block title %}Reports{% endblock %}
+{% block header %}Reports{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>Reports</h1><p>Business intelligence for revenue, delivery, services, staff, and risk.</p></div><div class="card-actions"><a class="secondary" href="{% url 'management:export_projects_csv' %}">Export projects CSV</a><a class="secondary" href="{% url 'management:export_payments_csv' %}">Export payments CSV</a></div></section>
+  <section class="grid"><article class="card"><div class="metric">{{ completion_rate }}%</div><h2>Completion rate</h2></article><article class="card"><div class="metric">${{ revenue_total }}</div><h2>Total revenue</h2></article><article class="card"><div class="metric">${{ revenue_month }}</div><h2>Revenue this month</h2></article><article class="card"><div class="metric">{{ clients_this_month }}</div><h2>Clients this month</h2></article><article class="card"><div class="metric">{{ overdue_projects.count }}</div><h2>Overdue</h2></article><article class="card"><div class="metric">{{ unpaid_projects.count }}</div><h2>Unpaid projects</h2></article></section>
+  <section class="grid-2 section-head"><h2>Projects by status</h2><h2>Projects by service</h2></section>
+  <section class="grid-2"><div class="table-card"><table><tbody>{% for row in projects_by_status %}<tr><td>{{ row.status }}</td><td>{{ row.total }}</td></tr>{% endfor %}</tbody></table></div><div class="table-card"><table><tbody>{% for service in projects_by_service %}<tr><td>{{ service.name }}</td><td>{{ service.total_projects }}</td></tr>{% endfor %}</tbody></table></div></section>
+  <section class="section-head"><h2>Staff performance</h2></section><section class="table-card"><table><thead><tr><th>Staff</th><th>Assigned</th><th>Completed</th><th>Active</th></tr></thead><tbody>{% for member in staff_performance %}<tr><td>{{ member.full_name }}</td><td>{{ member.total_assigned }}</td><td>{{ member.completed_count }}</td><td>{{ member.active_count }}</td></tr>{% endfor %}</tbody></table></section>
+{% endblock %}

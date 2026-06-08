@@ -1,0 +1,7 @@
+{% extends "staff_panel/base.html" %}
+{% block title %}My Projects{% endblock %}
+{% block header %}My Projects{% endblock %}
+{% block content %}
+  <section class="hero"><div><h1>My projects</h1><p>Projects assigned to you.</p></div></section>
+  <section class="table-card">{% if projects %}<table><thead><tr><th>Project</th><th>Client</th><th>Service</th><th>Status</th><th>Deadline</th></tr></thead><tbody>{% for project in projects %}<tr><td><a class="link" href="{% url 'staff:staff_project_detail' project.id %}">{{ project.title }}</a></td><td>{{ project.client.full_name }}</td><td>{{ project.service|default:"-" }}</td><td>{{ project.status }}</td><td>{{ project.deadline }}</td></tr>{% endfor %}</tbody></table>{% else %}<div class="empty">No assigned projects.</div>{% endif %}</section>{% include "admin_panel/pagination.html" with page_obj=projects %}
+{% endblock %}

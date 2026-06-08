@@ -1,0 +1,68 @@
+<aside class="sidebar">
+
+    <div class="brand">
+        <div class="brand-logo">TK</div>
+
+        <div class="brand-text">
+            <h2>TK Konsult</h2>
+            <span>Management Suite</span>
+        </div>
+    </div>
+
+    <nav class="sidebar-nav">
+
+        <p class="nav-heading">Main</p>
+
+        <a href="{% url 'management:admin_dashboard' %}" class="nav-link active">
+            <span>▦</span>
+            Dashboard
+        </a>
+
+        <a href="{% url 'management:admin_projects' %}" class="nav-link">
+            <span>◈</span>
+            Projects
+        </a>
+
+        <a href="{% url 'management:admin_clients' %}" class="nav-link">
+            <span>●</span>
+            Clients
+        </a>
+
+        <p class="nav-heading">Operations</p>
+
+        <a href="{% url 'management:admin_staff' %}" class="nav-link">
+            <span>◌</span>
+            Staff
+        </a>
+
+        <a href="{% url 'management:admin_services' %}" class="nav-link">
+            <span>▧</span>
+            Services
+        </a>
+
+        <a href="{% url 'management:admin_documents' %}" class="nav-link">
+            <span>▤</span>
+            Documents
+        </a>
+
+        <a href="{% url 'management:admin_payments' %}" class="nav-link">
+            <span>$</span>
+            Payments
+        </a>
+
+    </nav>
+
+    <div class="sidebar-user">
+
+        <div class="user-avatar">
+            {{ request.user.username|slice:":2"|upper }}
+        </div>
+
+        <div class="user-info">
+            <strong>{{ request.user.username }}</strong>
+            <small>Administrator</small>
+        </div>
+
+    </div>
+
+</aside>
