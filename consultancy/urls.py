@@ -13,4 +13,5 @@ urlpatterns = [
     path("workflow/", views.workflow, name="workflow"),
     path("careers/", views.careers, name="careers"),
     path("contact/", views.contact, name="contact"),
+    path("create-account/", views.client_signup, name="client_signup"),
 ]
