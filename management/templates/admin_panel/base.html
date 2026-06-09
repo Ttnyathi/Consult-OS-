@@ -444,6 +444,14 @@ grid-template-columns: repeat(4, minmax(0, 1fr));
             </div>
         </header>
 
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" style="padding: 12px 16px; margin-bottom: 16px; border-radius: 8px; background: {% if 'success' in message.tags %}#d1fae5{% elif 'error' in message.tags %}#ffe0e0{% elif 'warning' in message.tags %}#fef3c7{% else %}#d9eaff{% endif %}; color: {% if 'success' in message.tags %}#065f46{% elif 'error' in message.tags %}#9c1b1b{% elif 'warning' in message.tags %}#92400e{% else %}#064ba8{% endif %}; font-size: 13px;">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
         <section class="page-content">
             {% block content %}{% endblock %}
         </section>
